@@ -1,0 +1,26 @@
+{
+    "name": "hinza/upload",
+    "description": "this is upload file system",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Cloudinary\\Upload\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Adan Ansari",
+            "email": "elahiadan7@gmail.com"
+        }
+    ],
+    "require": {
+         "cloudinary/cloudinary_php": "^2"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cloudinary\\Upload\\CloudinaryServiceProvider"
+            ]
+        }
+    }
+}

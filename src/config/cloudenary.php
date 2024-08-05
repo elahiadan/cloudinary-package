@@ -1,0 +1,7 @@
+<?php
+
+return [
+    "CLOUDNARY_APP_NAME"=>"dsty6w1es",
+    "CLOUDNARY_API_KEY"=>"771339168539911",
+    "CLOUDNARY_API_SECRET"=>"uOydaRpM8YiArBdH9KgqH3C0Qi0",
+];
