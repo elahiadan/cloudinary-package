@@ -12,26 +12,24 @@ use Cloudinary\Tag\ImageTag;
 
 class CloudinaryFile
 {
-
-    public function __construct()
+    public static function getCloudinaryUrl()
     {
-        $appName = config('CLOUDNARY_APP_NAME');
-        $apiKey = config('CLOUDNARY_API_KEY');
-        $apiSecret = config('CLOUDNARY_API_SECRET');
-        // $CLOUDINARY_URL = 'cloudinary://' . $apiKey . ':' . $apiSecret . '@' . $appName . '?secure=true';
-        // $CLOUDINARY_URL = "cloudinary://$apiKey:$apiSecret@$appName?secure=true";
-        // Configuration::instance($CLOUDINARY_URL);
-
-        $CLOUDINARY_URL= 'cloudinary://771339168539911:uOydaRpM8YiArBdH9KgqH3C0Qi0@dsty6w1es?secure=true';
-        Configuration::instance($CLOUDINARY_URL);
+        $appName = config('cloudenary.CLOUDNARY_APP_NAME');
+        $apiKey = config('cloudenary.CLOUDNARY_API_KEY');
+        $apiSecret = config('cloudenary.CLOUDNARY_API_SECRET');
+        $CLOUDINARY_URL = 'cloudinary://' . $apiKey . ':' . $apiSecret . '@' . $appName . '?secure=true';
+        return Configuration::instance($CLOUDINARY_URL);
     }
+
+
     public static function getFile($public_id)
     {
+        self::getCloudinaryUrl();
         $file = new AdminApi();
         $data = $file->asset($public_id, [
             'colors' => true
         ]);
-        return $data;
+        return json_decode(json_encode($data));
     }
 
     public static function uploadFile($path)
@@ -42,7 +40,7 @@ class CloudinaryFile
             'use_filename' => true,
             'overwrite' => true
         ]);
-        return $data;
+        return json_decode(json_encode($data));
     }
     public static function viewFile($public_id)
     {
@@ -53,7 +51,6 @@ class CloudinaryFile
                     ->height($height)
                     ->background(Background::predominant())
             );
-
-        return $data;
+        return json_decode(json_encode($data));
     }
 }
