@@ -18,7 +18,7 @@ class CloudinaryFile
         $apiKey = config('cloudenary.CLOUDNARY_API_KEY');
         $apiSecret = config('cloudenary.CLOUDNARY_API_SECRET');
         $CLOUDINARY_URL = 'cloudinary://' . $apiKey . ':' . $apiSecret . '@' . $appName . '?secure=true';
-        return Configuration::instance($CLOUDINARY_URL);
+        Configuration::instance($CLOUDINARY_URL);
     }
 
 
@@ -34,6 +34,7 @@ class CloudinaryFile
 
     public static function uploadFile($path)
     {
+        self::getCloudinaryUrl();
         $upload = new UploadApi();
         $data = $upload->upload($path, [
             'public_id' => 'flower_sample',
@@ -42,15 +43,16 @@ class CloudinaryFile
         ]);
         return json_decode(json_encode($data));
     }
-    public static function viewFile($public_id)
+    public static function viewFile($public_id, $width = 500, $height = 500)
     {
-        $data = (new ImageTag($public_id, $width = 500, $height = 500))
+        self::getCloudinaryUrl();
+        $data = (new ImageTag($public_id))
             ->resize(
                 Resize::pad()
                     ->width($width)
                     ->height($height)
                     ->background(Background::predominant())
             );
-        return json_decode(json_encode($data));
+        return $data;
     }
 }
