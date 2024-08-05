@@ -1,6 +1,6 @@
 <?php
 
-namespace Upload\Cloudenary;
+namespace Cloudinary\Upload;
 
 use Illuminate\Support\ServiceProvider;
 
