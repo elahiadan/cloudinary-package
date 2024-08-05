@@ -1,10 +1,10 @@
 <?php
 
-namespace Cloudinary\Upload;
+namespace Upload\Cloudenary;
 
 use Illuminate\Support\ServiceProvider;
 
-class CloudenaryServiceProvider extends ServiceProvider
+class CloudinaryServiceProvider extends ServiceProvider
 {
     public function boot()
     {
